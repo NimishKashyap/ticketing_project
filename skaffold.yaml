@@ -1,5 +1,5 @@
-apiVersion: skaffold/v2alpha3 
-kind: Config 
+apiVersion: skaffold/v2alpha3
+kind: Config
 deploy:
   kubectl:
     manifests:
@@ -7,13 +7,13 @@ deploy:
 
 build:
   local:
-    push: false 
+    push: false
   artifacts:
-    - image: nimish8/auth 
-      context: auth 
-      docker: 
+    - image: nimish8/auth
+      context: auth
+      docker:
         dockerfile: Dockerfile
-      sync: 
+      sync:
         manual:
           - dest: .
             src: "src/**/*.ts"
