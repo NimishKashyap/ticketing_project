@@ -7,7 +7,7 @@ function signup() {
   const [password, setPassword] = useState("");
 
   const { doRequest, errors } = useRequest({
-    url: "/api/users/signup",
+    url: "/api/users/signin",
     method: "post",
     body: {
       email,
@@ -22,7 +22,7 @@ function signup() {
 
   return (
     <form onSubmit={onSubmit}>
-      <h1>Form</h1>
+      <h1>Sign In</h1>
       <div className="form-group">
         <label>Email Address</label>
         <input
@@ -44,7 +44,7 @@ function signup() {
       {errors}
 
       <button type={"submit"} className="btn btn-primary">
-        Sign Up
+        Sign In
       </button>
     </form>
   );

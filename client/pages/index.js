@@ -1,7 +1,21 @@
-import React from "react";
+import buildClient from "../api/buildClient";
 
-function Index() {
-  return <h1>index</h1>;
+function LandingPage({ currentUser }) {
+  return currentUser ? (
+    <h1>You are signed in </h1>
+  ) : (
+    <h1>You are not signed in</h1>
+  );
 }
 
-export default Index;
+// Cross-name space communication
+// http://NAMEOFSERVICE.NAMESPACE.svc.local
+
+LandingPage.getInitialProps = async (context) => {
+  console.log("Landing Page");
+  const { data } = await buildClient(context).get("/api/users/currentuser");
+
+  return data;
+};
+
+export default LandingPage;
