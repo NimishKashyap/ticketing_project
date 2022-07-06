@@ -1,10 +1,10 @@
 import express, { Request, Response } from "express";
-import {validateRequest} from "../middlewares/validate-request";
+import { validateRequest } from "@nimishkashyap031/common";
+import { BadRequestError } from "@nimishkashyap031/common";
 import { body } from "express-validator";
-import jwt from "jsonwebtoken";
-import { BadRequestError } from "../errors/bad-request-error";
-import {User} from "../models/user"
+import { User } from "../models/user";
 import { Password } from "../services/password";
+import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
@@ -13,17 +13,20 @@ router.post(
   [
     body("email").isEmail().withMessage("Email must be valid"),
     body("password").trim().notEmpty().withMessage("Must provide a password"),
-  ], validateRequest,
+  ],
+  validateRequest,
   async (req: Request, res: Response) => {
-    
-    const {email, password} = req.body;
-    const existingUser = await User.findOne({email});
-    if(!existingUser) {
+    const { email, password } = req.body;
+    const existingUser = await User.findOne({ email });
+    if (!existingUser) {
       throw new BadRequestError("Invalid credentials");
     }
-    
-    const passwordMatch = await Password.compare(existingUser.password,password);
-    if(!passwordMatch) {
+
+    const passwordMatch = await Password.compare(
+      existingUser.password,
+      password
+    );
+    if (!passwordMatch) {
       throw new BadRequestError("Invalid Credentials");
     }
     // Generate jsonwebtoken
