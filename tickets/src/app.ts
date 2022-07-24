@@ -2,8 +2,15 @@ import express, { Request, Response } from "express";
 import cookieSession from "cookie-session";
 import "express-async-errors";
 
-import { errorHandler } from "@nimishkashyap031/common";
-import { NotFoundError } from "@nimishkashyap031/common";
+import {
+  errorHandler,
+  NotFoundError,
+  currentUser,
+} from "@nimishkashyap031/common";
+import { createTicketRouter } from "./routes/new";
+import { showTicketRouter } from "./routes/show";
+import { indexTicketRouter } from "./routes";
+import { updateTicketRouter } from "./routes/update";
 
 const app = express();
 
@@ -16,6 +23,12 @@ app.use(
     secure: process.env.NODE_ENV !== "test",
   })
 );
+app.use(currentUser);
+
+app.use(createTicketRouter);
+app.use(showTicketRouter);
+app.use(indexTicketRouter);
+app.use(updateTicketRouter);
 
 app.all("*", async (req: Request, res: Response) => {
   throw new NotFoundError();
