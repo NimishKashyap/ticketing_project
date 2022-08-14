@@ -5,14 +5,14 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: nats-depl
+      app: nats
   template:
     metadata:
       labels:
-        app: nats-depl
+        app: nats
     spec:
       containers:
-        - name: nats-depl
+        - name: nats
           image: nats-streaming:0.17.0
           args:
             [
