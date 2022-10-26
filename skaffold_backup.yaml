@@ -6,12 +6,12 @@ deploy:
       - ./infra/k8s/*
 
 build:
-  #  local:
-  #  push: false
+  local:
+    push: false
   googleCloudBuild:
     projectId: automatic-tea-316711
   artifacts:
-    - image: us.gcr.io/automatic-tea-316711/auth
+    - image: nimish8/auth
       context: auth
       docker:
         dockerfile: Dockerfile
@@ -19,7 +19,7 @@ build:
         manual:
           - dest: .
             src: "src/**/*.ts"
-    - image: us.gcr.io/automatic-tea-316711/client
+    - image: nimish8/client
       context: client
       docker:
         dockerfile: Dockerfile
@@ -27,7 +27,7 @@ build:
         manual:
           - dest: .
             src: "**/*.js"
-    - image: us.gcr.io/automatic-tea-316711/tickets
+    - image: nimish8/tickets
       context: tickets
       docker:
         dockerfile: Dockerfile
@@ -35,7 +35,7 @@ build:
         manual:
           - dest: .
             src: "src/**/*.ts"
-    - image: us.gcr.io/automatic-tea-316711/orders
+    - image: nimish8/orders
       context: orders
       docker:
         dockerfile: Dockerfile

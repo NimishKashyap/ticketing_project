@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: nimish8/client
+          image: us.gcr.io/automatic-tea-316711/client
 
 ---
 apiVersion: v1

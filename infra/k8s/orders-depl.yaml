@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: orders
-          image: nimish8/orders
+          image: us.gcr.io/automatic-tea-316711/orders
           env:
             - name: MONGO_URI
               value: "mongodb://orders-mongo-srv:27017/orders"
