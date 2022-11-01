@@ -43,3 +43,11 @@ build:
         manual:
           - dest: .
             src: "src/**/*.ts"
+    - image: us.gcr.io/automatic-tea-316711/expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: "src/**/*.ts"
